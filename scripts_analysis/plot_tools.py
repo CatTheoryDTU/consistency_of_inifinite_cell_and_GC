@@ -122,6 +122,7 @@ def create_dE_v_pot_plot(alldata,name='figure4.pdf',cations=['H','Li','Na','K','
      axalone.set_ylabel('$\Delta$G$_\phi$ [eV]')
      figalone.legend(fontsize=16,bbox_to_anchor=(0.95,0.405),ncol=2)
      figalone.tight_layout()
+     os.makedirs(outdir,exist_ok=True)
      figalone.savefig(outdir+'%s.pdf'%cation)
      #plt.show()
      figalone.gca()
@@ -153,6 +154,7 @@ def create_dE_v_pot_plot(alldata,name='figure4.pdf',cations=['H','Li','Na','K','
     figsingle.text(0.415,0.485,'*Cs',va='center',fontsize=30,fontweight='bold')
     figall.tight_layout()
     figsingle.tight_layout()
+    os.makedirs(outdir,exist_ok=True)
     figsingle.savefig(outdir+'separate_panels.pdf')
     figall.savefig(outdir+'singlepanel.pdf')
 #    figsingle.show()
@@ -253,7 +255,9 @@ def plot_GC_dEcanondphi_vs_cap(alldata,cations=['slab','H','Li','Na','K','Cs'],o
         plt.legend()
         plt.tight_layout()
         if show: plt.show()
-        else: plt.savefig(outdir+outnames[ivar])
+        else:
+            os.makedirs(outdir,exist_ok=True)
+            plt.savefig(outdir+outnames[ivar])
         plt.close()
 
 def plot_GC_dne_vs_pot(alldata,cations=['H','Li','Na','K','Cs'],outdir='results/',show=False):
@@ -279,7 +283,9 @@ def plot_GC_dne_vs_pot(alldata,cations=['H','Li','Na','K','Cs'],outdir='results/
         plt.legend()
         plt.tight_layout()
         if show: plt.show()
-        else: plt.savefig(outdir+outnames[ivar])
+        else:
+            os.makedirs(outdir,exist_ok=True)
+            plt.savefig(outdir+outnames[ivar])
         plt.close()
 
 
@@ -319,8 +325,8 @@ def plot_dipoles_from_mean_potential(alldata,cations=['H','Li','Na','K','Cs'],ou
         plt.savefig('results/dn_vs_dipole_moments.pdf')
     plt.close()
 
-def plot_slope_vs_elneg(alldata,cations=['H','Li','Na','K','Cs']):
-#def plot_slope_vs_elneg(alldata,cations=['Li','Na','K','Cs']):
+#def plot_slope_vs_elneg(alldata,cations=['H','Li','Na','K','Cs']):
+def plot_slope_vs_elneg(alldata,cations=['Li','Na','K','Cs']):
     pltdat={}
     figeleneg,axeleneg=plt.subplots()
     slopes=[]
@@ -418,6 +424,8 @@ def plot_GC_capacitances(outdir='results/Capacitances/',alldata=None,Aperatm=6.9
       axmp.set_ylabel('E [eV]')
       figgc.legend()
       figgc.tight_layout()
+
+      os.makedirs(outdir,exist_ok=True)
       figgc.savefig(outdir+'Charge_vs_potential_%s.pdf'%cation)
       figmp.savefig(outdir+'Energy_vs_potential_mean_pot_%s.pdf'%cation)
       plt.close()
@@ -588,6 +596,7 @@ def plot_dn_and_E_vs_Capmismatch(alldata,outdir='results/'):
     figdndphi_phi.tight_layout()
     figdce.tight_layout()
     figdg.tight_layout()
+    os.makedirs(outdir,exist_ok=True)
     figdn.savefig(outdir+'dndphi_vs_Capmismatch_all_cations.pdf')
     figdndphi_phi.savefig(outdir+'dndphi_phi_vs_Capmismatch_all_cations.pdf')
     figdce.savefig(outdir+'dCanonical_energies_of_GC_vs_Capmismatch_all_cations.pdf')
@@ -644,6 +653,7 @@ def plot_GC_dG_vs_Capratio(alldata,outdir='results/',seconderiv=True):
         ax.set_ylabel(r'$\left(\frac{(\partial \Delta G[\phi])}{\partial \phi}-1\right)\cdot C_*^{-1}$ [V]')
     fig.legend(loc='lower left',bbox_to_anchor=(0.75,0.2))
     fig.tight_layout()
+    os.makedirs(outdir,exist_ok=True)
     if seconderiv:
         fig.savefig(outdir+'dG_GC_second_deriv_v_capmismatch.pdf')
     else:
