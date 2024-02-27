@@ -5,3 +5,7 @@ run_list*
 *out
 q*traj
 finished
+*txt
+*bakk
+*log
+out.traj
