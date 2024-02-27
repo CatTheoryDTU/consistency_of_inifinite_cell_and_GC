@@ -1,0 +1,7 @@
+slurm*
+err*
+submit*
+run_list*
+*out
+q*traj
+finished
